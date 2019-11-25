@@ -12,24 +12,45 @@ $app = AppFactory::create();
 $app->setBasePath('/api');
 
 
+// Versão da API
+
 $app->get('/', function (Request $request, Response $response, $args) {
-  $data = ['version' => '0.0.1'];
+  $data = ['version' => '0.2'];
   $payload = json_encode($data);
 
   $response->getBody()->write($payload);
   return $response->withHeader('Content-Type', 'application/json');
 });
 
+
+// Lista de produtos
+
 $app->get('/produtos/', function (Request $request, Response $response, $args) {
   $pdowrapper = new PdoWrapper();
   $dbh = $pdowrapper->getConnection();
 
-  $sth = $dbh->prepare("select codigo, descricao, peso, medidas, preco from v2_produto");
+  $sth = $dbh->prepare("select codigo, descricao, peso, medidas, preco from v2_produto order by codigo");
   $sth->execute();
   
   $response->getBody()->write(json_encode($sth->fetchAll()));
   
   return $response->withHeader('Content-Type', 'application/json');
 });
+
+
+// Produto individual
+
+$app->get('/produtos/{codigo}/', function (Request $request, Response $response, $args) {
+  $pdowrapper = new PdoWrapper();
+  $dbh = $pdowrapper->getConnection();
+
+  $sth = $dbh->prepare("select codigo, descricao, peso, medidas, preco from v2_produto where codigo=:codigo");
+  $sth->execute(['codigo' => strtoupper($args['codigo'])]);
+
+  $response->getBody()->write(json_encode($sth->fetch()));
+  
+  return $response->withHeader('Content-Type', 'application/json');
+});
+
 
 $app->run();
