@@ -15,6 +15,8 @@ $app->setBasePath('/api');
 // HTTP Basic Auth
 
 $app->add(new Tuupola\Middleware\HttpBasicAuthentication([
+  "secure" => true,
+  "relaxed" => ["127.0.0.1", "localhost", "pontualimportbrindes.com.br", "www.pontualimportbrindes.com.br"],
   "users" => [
     "cliente" => '$2y$10$uYlzFErEanRTmMmlLSqyFONd6p25Z4on7c4EZ2crx7MzdnoWlitly',
     ]
