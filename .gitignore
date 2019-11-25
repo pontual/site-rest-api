@@ -1,1 +1,5 @@
 vendor/
+kitweb_v2_db_*.php
+settings.php
+db_conn.php
+db_cls.php
