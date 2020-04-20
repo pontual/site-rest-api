@@ -21,18 +21,21 @@ $app->add(new Tuupola\Middleware\HttpBasicAuthentication([
     "cliente" => '$2y$10$uYlzFErEanRTmMmlLSqyFONd6p25Z4on7c4EZ2crx7MzdnoWlitly',
     ]
   ]));
-  
 
-// Versão da API
 
-$app->get('/', function (Request $request, Response $response, $args) {
-  $data = ['version' => '0.2'];
-  $payload = json_encode($data);
-
-  $response->getBody()->write($payload);
-  return $response->withHeader('Content-Type', 'application/json');
+// CORS
+$app->options('/{routes:.+}', function ($request, $response, $args) {
+    return $response;
 });
 
+$app->add(function ($request, $handler) {
+    $response = $handler->handle($request);
+    return $response
+            ->withHeader('Access-Control-Allow-Origin', '*')
+            ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+            ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+});
+    
 
 // Lista de produtos
 
@@ -45,7 +48,11 @@ $app->get('/produtos/', function (Request $request, Response $response, $args) {
   
   $response->getBody()->write(json_encode($sth->fetchAll()));
   
-  return $response->withHeader('Content-Type', 'application/json');
+  return $response
+      ->withHeader('Access-Control-Allow-Origin', '*')
+      ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+      ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
+      ->withHeader('Content-Type', 'application/json');
 });
 
 
@@ -60,7 +67,11 @@ $app->get('/produtos/{codigo}/', function (Request $request, Response $response,
 
   $response->getBody()->write(json_encode($sth->fetch()));
   
-  return $response->withHeader('Content-Type', 'application/json');
+  return $response
+      ->withHeader('Access-Control-Allow-Origin', '*')
+      ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+      ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
+      ->withHeader('Content-Type', 'application/json');
 });
 
 
