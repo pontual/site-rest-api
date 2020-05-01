@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import CategoriaList from './CategoriaList.js';
 import Menu from './Menu.js';
+import PersistentDrawerLeft from './ResponsiveDrawer.js';
 
 
 class App extends React.Component {
@@ -12,7 +13,7 @@ class App extends React.Component {
             categoria: 0,
         }
     }
-
+    
     handleClick(id) {
         console.log("handleClick on App " + id);
         this.setState({ categoria: id });
@@ -21,8 +22,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
-            <Menu onClick={id => this.handleClick(id)} />
-            <CategoriaList categoria={this.state.categoria} />
+            <PersistentDrawerLeft categoria={this.state.categoria} onClick={(id) => this.handleClick(id)} />
             </div>
         );
     }

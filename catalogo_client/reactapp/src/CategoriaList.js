@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 import { ClienteAuth } from './sitesecrets.js';
@@ -17,16 +16,15 @@ class CategoriaList extends React.Component {
         return (
             <div>
             {this.props.categoria}
-            <ul>
             {this.state.produtos.map((val, idx) => {
-                return <li key={val.codigo}>{val.codigo} {val.descricao}</li>
+                return <div key={val.codigo}>{val.codigo} {val.descricao}</div>
             })}
-            </ul>
             </div>
         );
     }
 
     componentDidUpdate(prevProps) {
+        console.log("CategoriaList componentDidUpdate " + prevProps);
         if (prevProps.categoria !== this.props.categoria) {
             axios.get("http://pontualimportbrindes.com.br/api/categoria/" + this.props.categoria + "/", {auth: ClienteAuth})
                  .then(res => {

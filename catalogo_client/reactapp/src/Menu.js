@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 import { ClienteAuth } from './sitesecrets.js';
@@ -7,9 +6,9 @@ import { ClienteAuth } from './sitesecrets.js';
 
 function MenuLink(props) {
     return (
-        <a href="#" onClick={props.onClick}>
+        <button onClick={props.onClick}>
         {props.nome}
-        </a>
+        </button>
     );
 }
 
