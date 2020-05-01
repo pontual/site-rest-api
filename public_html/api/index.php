@@ -37,7 +37,7 @@ $app->add(function ($request, $handler) {
 });
     
 
-// Lista de produtos
+// Lista de todos os produtos
 
 $app->get('/produtos/', function (Request $request, Response $response, $args) {
   $pdowrapper = new PdoWrapper();
@@ -45,6 +45,44 @@ $app->get('/produtos/', function (Request $request, Response $response, $args) {
 
   $sth = $dbh->prepare("select codigo, descricao, peso, medidas, preco from v2_produto order by codigo");
   $sth->execute();
+  
+  $response->getBody()->write(json_encode($sth->fetchAll()));
+  
+  return $response
+      ->withHeader('Access-Control-Allow-Origin', '*')
+      ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+      ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
+      ->withHeader('Content-Type', 'application/json');
+});
+
+
+// Menu
+
+$app->get('/menu/', function (Request $request, Response $response, $args) {
+  $pdowrapper = new PdoWrapper();
+  $dbh = $pdowrapper->getConnection();
+
+  $sth = $dbh->prepare("select id, nome from v2_categoria order by nome");
+  $sth->execute();
+  
+  $response->getBody()->write(json_encode($sth->fetchAll()));
+  
+  return $response
+      ->withHeader('Access-Control-Allow-Origin', '*')
+      ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+      ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
+      ->withHeader('Content-Type', 'application/json');
+});
+
+
+// Produtos da Categoria com id especifico
+
+$app->get('/categoria/{id}/', function (Request $request, Response $response, $args) {
+  $pdowrapper = new PdoWrapper();
+  $dbh = $pdowrapper->getConnection();
+
+  $sth = $dbh->prepare("select codigo, descricao, peso as estoque, medidas, preco as cv, atualizado from v2_produto where id in (select id_produto from v2_produtos_de_categoria where id_categoria=:id) order by codigo");
+  $sth->execute(['id' => $args['id']]);
   
   $response->getBody()->write(json_encode($sth->fetchAll()));
   
