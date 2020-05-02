@@ -2,6 +2,7 @@
 [  ] Card click opens large image
 [  ] login to show cv
 [  ] google maps link
+[  ] search
 
 * would be nice
 [  ] drawer top fixed (to be able to close drawer)
