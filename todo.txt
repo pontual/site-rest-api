@@ -5,6 +5,7 @@
 
 * would be nice
 [  ] drawer top fixed (to be able to close drawer)
+[  ] drawer stays open on desktop
 
 * completed
 [OK] category name as header
