@@ -1,7 +1,13 @@
-[  ] color red
+* must implement
 [  ] Card click opens large image
+[  ] login to show cv
+[  ] google maps link
 
+* would be nice
+[  ] drawer top fixed (to be able to close drawer)
+
+* completed
 [OK] category name as header
 [OK] test on mobile, maybe switch drawers
 
-[NO] hide drawer always visible (instead of on top of drawer)
+* cancelled

@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
     },
     appBar: {
+        backgroundColor: '#A90102',
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
@@ -164,6 +165,7 @@ export default function PersistentDrawerLeft(props) {
         <Typography variant="h6" noWrap>
         Pontual Import Brindes
         </Typography>
+
         
         </Toolbar>
         </AppBar>
@@ -201,7 +203,20 @@ export default function PersistentDrawerLeft(props) {
         >
         <div className={classes.drawerHeader} />
 
+
+        <Typography variant="button" noWrap>
+        Rua Rio Vermelho, 13 - Canindé
+        <br />
+        São Paulo, SP, CEP 03034-110
+        <br />
+        (11) 3312-8845
+        </Typography>
+
+        <br />
+        <br />
+        
         <OpenMenuPrompt isVisible={firstTime} />
+        
         
         <LoadingOverlay active={isCategoriaActive} text="Carregando, por favor aguarde...">
 
