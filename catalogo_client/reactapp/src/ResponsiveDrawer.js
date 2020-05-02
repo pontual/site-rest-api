@@ -109,10 +109,6 @@ export default function PersistentDrawerLeft(props) {
         setIsMenuActive(false);
     };
 
-    const handleCategoriaOverlayTrue = () => {
-        setIsCategoriaActive(true);
-    };
-    
     const handleCategoriaOverlayFalse = () => {
         setIsCategoriaActive(false);
     };

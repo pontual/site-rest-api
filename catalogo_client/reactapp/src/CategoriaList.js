@@ -1,7 +1,10 @@
 import React from 'react';
 import axios from 'axios';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
 
-import { ClienteAuth } from './sitesecrets.js';
+import { ClienteAuth } from './sitesecrets';
+import ProdutoCard from './ProdutoCard';
 
 
 class CategoriaList extends React.Component {
@@ -15,13 +18,17 @@ class CategoriaList extends React.Component {
 
     render() {
         return (
-            <div>
+            <GridList cols={3}>
             { this.state.firstTime ? "Escolha uma categoria à esquerda" : "" }
 
             {this.state.produtos.map((val, idx) => {
-                return <div key={val.codigo}>{val.codigo} {val.descricao}</div>
+                return (
+                    <GridListTile key={val.codigo}>
+                    <ProdutoCard codigo={val.codigo} />
+                    </GridListTile>
+                )
             })}
-            </div>
+            </GridList>
         );
     }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import { ClienteAuth } from './sitesecrets.js';
+import { ClienteAuth } from './sitesecrets';
 
 
 function MenuLink(props) {
