@@ -6,7 +6,8 @@
 
 * would be nice
 [  ] drawer top fixed (to be able to close drawer)
-[  ] on desktop, drawer does not auto-close when choosing new category
+[  ] ResponsiveDrawer: on desktop, drawer does not auto-close
+       when choosing new category
 
 * completed
 [OK] category name as header

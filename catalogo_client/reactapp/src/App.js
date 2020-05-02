@@ -1,24 +1,21 @@
 import React from 'react';
-// import logo from './logo.svg';
 import './App.css';
-// import CategoriaList from './CategoriaList.js';
-// import Menu from './Menu.js';
-import PersistentDrawerLeft from './ResponsiveDrawer.js';
+import PersistentDrawerLeft from './PersistentDrawerLeft';
 
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            categoria: 0,
+            categoriaId: 0,
             categoriaNome: "",
         }
     }
     
     handleClick(id, nome) {
         console.log("handleClick on App " + id + nome);
-        if (id !== this.state.categoria) {
-            this.setState({ categoria: id });
+        if (id !== this.state.categoriaId) {
+            this.setState({ categoriaId: id });
             this.setState({ categoriaNome: nome });
         }
     }
@@ -26,7 +23,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
-            <PersistentDrawerLeft categoria={this.state.categoria} categoriaNome={this.state.categoriaNome} onClick={(id, nome) => this.handleClick(id, nome)} />
+            <PersistentDrawerLeft categoriaId={this.state.categoriaId} categoriaNome={this.state.categoriaNome} onClick={(id, nome) => this.handleClick(id, nome)} />
             </div>
         );
     }

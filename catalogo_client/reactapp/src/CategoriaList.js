@@ -47,8 +47,8 @@ class CategoriaList extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.categoria !== this.props.categoria) {
-            axios.get("http://pontualimportbrindes.com.br/api/categoria/" + this.props.categoria + "/", {auth: ClienteAuth})
+        if (prevProps.categoriaId !== this.props.categoriaId) {
+            axios.get("http://pontualimportbrindes.com.br/api/categoria/" + this.props.categoriaId + "/", {auth: ClienteAuth})
                  .then(res => {
                      const rows = res.data;
                      this.setState({ firstTime: false });
