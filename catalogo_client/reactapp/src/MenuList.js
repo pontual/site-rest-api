@@ -17,7 +17,7 @@ class MenuList extends React.Component {
 
     renderLink(id, nome) {
         return (
-            <ListItem button key={id} onClick={() => this.props.onClick(id) }>
+            <ListItem button key={id} onClick={() => this.props.onClick(id, nome) }>
             <ListItemText primary={nome} />
             </ListItem>
         );

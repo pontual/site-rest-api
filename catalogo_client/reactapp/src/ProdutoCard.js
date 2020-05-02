@@ -22,11 +22,11 @@ export default function ProdutoCard(props) {
     const classes = useStyles();
 
     return (
-        <Card className={classes.root}>
+        <Card className={classes.root} onClick={() => console.log('card clicked')}>
         <CardActionArea>
         <CardMedia
         className={classes.media}
-        image="/thumbs/{props.imgfile}.jpg"
+        image={"/thumbs/" + props.codigo + "_" + props.atualizado + "_thumb.jpg"}
         title="My Title"
         />
         <CardContent>
@@ -34,19 +34,11 @@ export default function ProdutoCard(props) {
         {props.codigo}
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-        Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-        across all continents except Antarctica
+        {props.descricao}
         </Typography>
         </CardContent>
         </CardActionArea>
-        <CardActions>
-        <Button size="small" color="primary">
-        Share
-        </Button>
-        <Button size="small" color="primary">
-        Learn More
-        </Button>
-        </CardActions>
+
         </Card>
     );
 }

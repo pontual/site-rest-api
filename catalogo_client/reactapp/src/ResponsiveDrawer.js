@@ -19,6 +19,9 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 // import MailIcon from '@material-ui/icons/Mail';
 import red from '@material-ui/core/colors/red';
 import LoadingOverlay from 'react-loading-overlay';
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
+
 
 import MenuList from './MenuList';
 import CategoriaList from './CategoriaList';
@@ -57,7 +60,6 @@ const useStyles = makeStyles((theme) => ({
         width: drawerWidth,
     },
     drawerHeader: {
-        color: red,
         display: 'flex',
         alignItems: 'center',
         padding: theme.spacing(0, 1),
@@ -83,10 +85,28 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+function OpenMenuPrompt(props) {
+    const isVisible = props.isVisible;
+    if (isVisible) {
+        return (
+            <Box>
+            <Typography variant="h6" noWrap>
+            Bem-vindo(a) ao Site!
+            </Typography>
+            </Box>
+        );
+    } else {
+        return null;
+    }
+}
+
+
 export default function PersistentDrawerLeft(props) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(true);
+
+    const [firstTime, setFirstTime] = React.useState(true);
 
     // spinner overlay, true = spinner is showing
     const [isMenuActive, setIsMenuActive] = React.useState(true);
@@ -100,11 +120,13 @@ export default function PersistentDrawerLeft(props) {
         setOpen(false);
     };
 
-    const handleClick = (id) => {
-        props.onClick(id);
+    const handleClick = (id, nome) => {
+        props.onClick(id, nome);
         if (id !== props.categoria) {
             setIsCategoriaActive(true);
+            setFirstTime(false);
         }
+        handleDrawerClose();
     };
 
     const hideMenuOverlay = () => {
@@ -132,6 +154,10 @@ export default function PersistentDrawerLeft(props) {
         edge="start"
         className={clsx(classes.menuButton, open && classes.hide)}
         >
+        <Typography variant="button">
+        Menu&nbsp;
+        </Typography>
+        
         <MenuIcon />
         </IconButton>
         
@@ -162,7 +188,7 @@ export default function PersistentDrawerLeft(props) {
 
         <Divider />
 
-        <MenuList onClick={id => handleClick(id)} onLoad={() => hideMenuOverlay()} />
+        <MenuList onClick={(id, nome) => handleClick(id, nome)} onLoad={() => hideMenuOverlay()} />
         </LoadingOverlay>
         
         </Drawer>
@@ -175,14 +201,12 @@ export default function PersistentDrawerLeft(props) {
         >
         <div className={classes.drawerHeader} />
 
-        <Typography variant="h6" noWrap>
-        Catálogo de Produtos
-        </Typography>
+        <OpenMenuPrompt isVisible={firstTime} />
         
         <LoadingOverlay active={isCategoriaActive} text="Carregando, por favor aguarde...">
 
 
-        <CategoriaList categoria={props.categoria} doneLoading={() => handleCategoriaOverlayFalse()} />
+        <CategoriaList categoria={props.categoria} categoriaNome={props.categoriaNome} doneLoading={() => handleCategoriaOverlayFalse()} />
 
         </LoadingOverlay>
 

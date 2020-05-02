@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -22,12 +23,21 @@ class CategoriaList extends React.Component {
     render() {
         return (
             <Box justifyContent="center" alignItems="center">
+
+            <Typography variant="h6" noWrap>
+            {this.props.categoriaNome}
+            </Typography>
+            
+            <br />
+            <br />
+            <br />
+
             <Grid container spacing={2}>
 
             {this.state.produtos.map((val, idx) => {
                 return (
                     <Grid item key={val.codigo}>
-                    <img src={"/thumbs/" + val.codigo + "_" + val.atualizado + "_thumb.jpg"} alt={val.codigo} />
+                    <ProdutoCard codigo={val.codigo} atualizado={val.atualizado} descricao={val.descricao} cv={val.cv} />
                     </Grid>
                 )
             })}

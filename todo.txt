@@ -1,4 +1,7 @@
 [  ] color red
-[  ] test on mobile, maybe switch drawers
-[  ] align images center
-[  ] hide drawer always visible (instead of on top of drawer)
+[  ] Card click opens large image
+
+[OK] category name as header
+[OK] test on mobile, maybe switch drawers
+
+[NO] hide drawer always visible (instead of on top of drawer)
