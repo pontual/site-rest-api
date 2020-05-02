@@ -1,8 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
-import CategoriaList from './CategoriaList.js';
-import Menu from './Menu.js';
+// import CategoriaList from './CategoriaList.js';
+// import Menu from './Menu.js';
 import PersistentDrawerLeft from './ResponsiveDrawer.js';
 
 
