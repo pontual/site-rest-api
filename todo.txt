@@ -1,5 +1,4 @@
 [  ] color red
-[  ] cards for products, thumbnails
 [  ] test on mobile, maybe switch drawers
-[  ] GridList image?
 [  ] align images center
+[  ] hide drawer always visible (instead of on top of drawer)
