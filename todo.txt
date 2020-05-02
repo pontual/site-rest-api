@@ -2,3 +2,4 @@
 [  ] cards for products, thumbnails
 [  ] test on mobile, maybe switch drawers
 [  ] GridList image?
+[  ] align images center

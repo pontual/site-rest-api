@@ -102,7 +102,9 @@ export default function PersistentDrawerLeft(props) {
 
     const handleClick = (id) => {
         props.onClick(id);
-        setIsCategoriaActive(true);
+        if (id !== props.categoria) {
+            setIsCategoriaActive(true);
+        }
     };
 
     const hideMenuOverlay = () => {

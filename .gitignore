@@ -3,3 +3,6 @@ kitweb_v2_db_production.php
 settings.php
 db_conn.php
 db_cls.php
+
+*.JPG
+*.jpg

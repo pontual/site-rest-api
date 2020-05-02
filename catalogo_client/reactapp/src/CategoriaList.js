@@ -1,7 +1,10 @@
 import React from 'react';
 import axios from 'axios';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import ListSubheader from '@material-ui/core/ListSubheader';
 
 import { ClienteAuth } from './sitesecrets';
 import ProdutoCard from './ProdutoCard';
@@ -18,17 +21,18 @@ class CategoriaList extends React.Component {
 
     render() {
         return (
-            <GridList cols={3}>
-            { this.state.firstTime ? "Escolha uma categoria à esquerda" : "" }
+            <Box justifyContent="center" alignItems="center">
+            <Grid container spacing={2}>
 
             {this.state.produtos.map((val, idx) => {
                 return (
-                    <GridListTile key={val.codigo}>
-                    <ProdutoCard codigo={val.codigo} />
-                    </GridListTile>
+                    <Grid item key={val.codigo}>
+                    <img src={"/thumbs/" + val.codigo + "_" + val.atualizado + "_thumb.jpg"} alt={val.codigo} />
+                    </Grid>
                 )
             })}
-            </GridList>
+            </Grid>
+            </Box>
         );
     }
 

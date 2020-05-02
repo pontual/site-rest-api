@@ -16,7 +16,9 @@ class App extends React.Component {
     
     handleClick(id) {
         console.log("handleClick on App " + id);
-        this.setState({ categoria: id });
+        if (id !== this.state.categoria) {
+            this.setState({ categoria: id });
+        }
     }
     
     render() {
