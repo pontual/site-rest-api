@@ -7,7 +7,7 @@
 * would be nice
 [  ] drawer top fixed (to be able to close drawer)
 [  ] ResponsiveDrawer: on desktop, drawer does not auto-close
-       when choosing new category
+       when choosing new category. See italian phrasebook
 
 * completed
 [OK] category name as header
